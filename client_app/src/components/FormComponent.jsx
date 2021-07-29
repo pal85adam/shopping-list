@@ -81,7 +81,9 @@ export default function FooterComponent({ setItemsState }) {
               type="text"
             />
             <p className="error">
-              {!isValid && touched.itemName && formErrors.itemName}
+              {!isValid &&
+                (formStatus === STATUS.SUBMITTED || touched.itemName) &&
+                formErrors.itemName}
             </p>
           </div>
           <div>
@@ -94,7 +96,9 @@ export default function FooterComponent({ setItemsState }) {
               type="text"
             />
             <p className="error">
-              {!isValid && touched.itemPrice && formErrors.itemPrice}
+              {!isValid &&
+                (formStatus === STATUS.SUBMITTED || touched.itemPrice) &&
+                formErrors.itemPrice}
             </p>
           </div>
           <input

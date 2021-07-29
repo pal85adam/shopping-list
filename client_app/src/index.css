@@ -309,8 +309,15 @@ form {
   }
 }
 
-form p.error{
+form p.error {
   font-size: 12px;
   text-align: center;
   color: indianred;
+}
+
+.button-cancel {
+  width: 40px;
+  background: #f5f5f5;
+  color: black;
+  border: 1px solid black;
 }

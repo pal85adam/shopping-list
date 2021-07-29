@@ -8,8 +8,10 @@ const STATUS = {
   COMPLETED: "completed",
 };
 
-export default function FooterComponent({ setItemsState }) {
+export default function FormComponent({ setItemsState }) {
+  
   const [viewSubmitForm, setViewSubmitForm] = useState(false);
+
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
 
@@ -70,44 +72,55 @@ export default function FooterComponent({ setItemsState }) {
         </button>
       )}
       {viewSubmitForm && (
-        <form onSubmit={(e) => formSubmitHandler(e)}>
-          <div>
+        <>
+          <button
+            className="button button-cancel"
+            onClick={() => {
+              resetForm();
+              setViewSubmitForm(false);
+            }}
+          >
+            X
+          </button>
+          <form onSubmit={(e) => formSubmitHandler(e)}>
+            <div>
+              <input
+                id="itemName"
+                placeholder="Name"
+                value={itemName}
+                onChange={(e) => setItemName(e.target.value)}
+                onBlur={(e) => setTouchedHandler(e)}
+                type="text"
+              />
+              <p className="error">
+                {!isValid &&
+                  (formStatus === STATUS.SUBMITTED || touched.itemName) &&
+                  formErrors.itemName}
+              </p>
+            </div>
+            <div>
+              <input
+                id="itemPrice"
+                placeholder="Price"
+                value={itemPrice}
+                onChange={(e) => setItemPrice(e.target.value)}
+                onBlur={(e) => setTouchedHandler(e)}
+                type="text"
+              />
+              <p className="error">
+                {!isValid &&
+                  (formStatus === STATUS.SUBMITTED || touched.itemPrice) &&
+                  formErrors.itemPrice}
+              </p>
+            </div>
             <input
-              id="itemName"
-              placeholder="Name"
-              value={itemName}
-              onChange={(e) => setItemName(e.target.value)}
-              onBlur={(e) => setTouchedHandler(e)}
-              type="text"
+              className="button"
+              type="submit"
+              value="submit"
+              disabled={formStatus === STATUS.SUBMITTING}
             />
-            <p className="error">
-              {!isValid &&
-                (formStatus === STATUS.SUBMITTED || touched.itemName) &&
-                formErrors.itemName}
-            </p>
-          </div>
-          <div>
-            <input
-              id="itemPrice"
-              placeholder="Price"
-              value={itemPrice}
-              onChange={(e) => setItemPrice(e.target.value)}
-              onBlur={(e) => setTouchedHandler(e)}
-              type="text"
-            />
-            <p className="error">
-              {!isValid &&
-                (formStatus === STATUS.SUBMITTED || touched.itemPrice) &&
-                formErrors.itemPrice}
-            </p>
-          </div>
-          <input
-            className="button"
-            type="submit"
-            value="submit"
-            disabled={formStatus === STATUS.SUBMITTING}
-          />
-        </form>
+          </form>
+        </>
       )}
     </section>
   );

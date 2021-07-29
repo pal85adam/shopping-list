@@ -1,12 +1,12 @@
 import React from "react";
-import ImageComponent  from "./ImageComponent";
 
-const ItemComponent = ({itemId, itemName, itemPrice, itemCompleteHandler}) => {
+const ItemComponent = ({item, itemCompleteHandler}) => {
+  const {itemId, itemName, itemPrice} = item;
   return (
     <article>
       <div className="check-completed">
         <label>
-          <input name="checkme" type="checkbox" onChange={(e)=>itemCompleteHandler(e,itemId)}/>
+          <input name="checkme" type="checkbox" onChange={(e)=>itemCompleteHandler(itemId)}/>
           <span></span>
         </label>
       </div>
@@ -14,10 +14,10 @@ const ItemComponent = ({itemId, itemName, itemPrice, itemCompleteHandler}) => {
         {itemName},<span className="price">{itemPrice}:-</span>
       </h4>
       <div className="item-img">
-        <ImageComponent
-          imageAlt="item"
-          imageSrc="assets/images/shopping-item.jpeg"
-          imageClassName=""
+        <img
+          alt="item"
+          src="/assets/images/shopping-item.jpeg"
+          ClassName=""
         />
       </div>
     </article>

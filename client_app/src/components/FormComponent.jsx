@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 const STATUS = {
   IDEL: "idel",
@@ -8,8 +7,7 @@ const STATUS = {
   COMPLETED: "completed",
 };
 
-export default function FormComponent({ setItemsState }) {
-  
+export default function FormComponent({ dispatch }) {
   const [viewSubmitForm, setViewSubmitForm] = useState(false);
 
   const [itemName, setItemName] = useState("");
@@ -37,10 +35,7 @@ export default function FormComponent({ setItemsState }) {
     e.preventDefault();
     setFormStatus(STATUS.SUBMITTING);
     if (isValid) {
-      const itemId = uuidv4();
-      const itemCompleted = false;
-      let newItem = { itemId, itemName, itemPrice, itemCompleted };
-      setItemsState((items) => [...items, newItem]);
+      dispatch({ type: "addNewItem", itemName, itemPrice });
       setViewSubmitForm(false);
       setFormStatus(STATUS.COMPLETED);
       resetForm();

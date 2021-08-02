@@ -68,16 +68,15 @@ export default function FormComponent({ dispatch }) {
       )}
       {viewSubmitForm && (
         <>
-          <button
+
+          <form onSubmit={(e) => formSubmitHandler(e)}>
+          <span
             className="button button-cancel"
             onClick={() => {
               resetForm();
               setViewSubmitForm(false);
             }}
-          >
-            X
-          </button>
-          <form onSubmit={(e) => formSubmitHandler(e)}>
+          ></span>
             <div>
               <input
                 id="itemName"

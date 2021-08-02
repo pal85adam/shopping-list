@@ -1,2 +1,5 @@
 NOTES.md
 client_app/node_modules/*
+client_app/.firebase/
+client_app/.firebaserc
+client_app/firebase.json

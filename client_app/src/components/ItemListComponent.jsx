@@ -31,7 +31,7 @@ export default function ItemListComponent({ incompletedItems, dispatch }) {
             key={index}
             item={item}
             itemCompleteHandler={(itemId) =>
-              dispatch({ type: "setItemComplete", itemId })
+              dispatch({ type: "setItemToCompleted", itemId })
             }
           />
         ))}

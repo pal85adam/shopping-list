@@ -17,7 +17,7 @@ const ItemComponent = ({item, itemCompleteHandler}) => {
         <img
           alt="item"
           src="/assets/images/shopping-item.jpeg"
-          ClassName=""
+          className=""
         />
       </div>
     </article>
